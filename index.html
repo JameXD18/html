@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Card</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="product-card-container">
+        <div class="product-card">
+            <div class="image-container">
+                <div class="icons">
+                    <div class="icon"><i class="fas fa-share-alt"></i></div>
+                    <div class="icon"><i class="far fa-heart"></i></div>
+                </div>
+                <img src="apple.png" alt="Delicious Apples" class="main-image">
+                <div class="thumbnails">
+                    <img src="apple.png" alt="Apple 1" class="thumbnail active">
+                    <img src="apple-slice.png" alt="Apple 2" class="thumbnail">
+                    <img src="apple.png" alt="Apple 3" class="thumbnail">
+                    <img src="apple.png" alt="Apple 4" class="thumbnail">
+                </div>
+            </div>
+            <div class="details">
+                <h2 class="title">Delicious Apples</h2>
+                <p class="code">COD: 49999</p>
+                <p class="price">R$ 7.93</p>
+                <div class="color-selector">
+                    <p>SELECT A COLOR</p>
+                    <div class="colors">
+                        <div class="color green active"></div>
+                        <div class="color light-green"></div>
+                        <div class="color yellow"></div>
+                        <div class="color red"></div>
+                    </div>
+                </div>
+                <div class="benefits">
+                    <p>BENEFITS</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Apples are nutritious</li>
+                        <li><i class="fas fa-check"></i> Apples may be good for weight loss</li>
+                        <li><i class="fas fa-check"></i> Apples may be good for bone health</li>
+                        <li><i class="fas fa-check"></i> They're linked to a lowest risk of diabetes</li>
+                    </ul>
+                </div>
+                <button class="add-to-cart">ADD TO CART</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="image-preview-overlay">
+        <div class="image-preview-content">
+            <img src="" alt="Full Size Preview" class="image-preview">
+            <button class="close-button">&times;</button>
+        </div>
+    </div>
+
+    <script>
+        const mainImage = document.querySelector('.main-image');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const imagePreviewOverlay = document.querySelector('.image-preview-overlay');
+        const imagePreview = document.querySelector('.image-preview');
+        const closeButton = document.querySelector('.close-button');
+
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', () => {
+                mainImage.src = thumbnail.src;
+                thumbnails.forEach(thumb => thumb.classList.remove('active'));
+                thumbnail.classList.add('active');
+            });
+        });
+
+        mainImage.addEventListener('click', () => {
+            imagePreview.src = mainImage.src;
+            imagePreviewOverlay.style.display = 'flex';
+        });
+
+        closeButton.addEventListener('click', () => {
+            imagePreviewOverlay.style.display = 'none';
+        });
+
+        // Optional: Close overlay on outside click
+        imagePreviewOverlay.addEventListener('click', (event) => {
+            if (event.target === imagePreviewOverlay) {
+                imagePreviewOverlay.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
